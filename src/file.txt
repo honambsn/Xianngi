@@ -1,0 +1,201 @@
+Folder PATH listing for volume New Volume
+Volume serial number is D428-1106
+D:.
+|   file.txt
+|   index.html
+|   main.ts
+|   styles.scss
+|   
++---app
+|   |   app-routing.module.ts
+|   |   app.component.html
+|   |   app.component.scss
+|   |   app.component.spec.ts
+|   |   app.component.ts
+|   |   app.config.ts
+|   |   app.routes.ts
+|   |   
+|   +---core
+|   |   |   core.module.ts
+|   |   |   
+|   |   +---interfaces
+|   |   |       game-state.ts
+|   |   |       xiangqi-ai.ts
+|   |   |       
+|   |   +---models
+|   |   |       board.model.spec.ts
+|   |   |       board.model.ts
+|   |   |       direction.ts
+|   |   |       end-reason.ts
+|   |   |       game-state.model.spec.ts
+|   |   |       game-state.model.ts
+|   |   |       piece-type.ts
+|   |   |       player-side.ts
+|   |   |       position.model.ts
+|   |   |       result.model.spec.ts
+|   |   |       result.model.ts
+|   |   |       
+|   |   +---moves
+|   |   |       capture-move.model.spec.ts
+|   |   |       capture-move.model.ts
+|   |   |       move.model.spec.ts
+|   |   |       move.model.ts
+|   |   |       normal-move.model.spec.ts
+|   |   |       normal-move.model.ts
+|   |   |       
+|   |   +---pieces
+|   |   |       advisor.model.spec.ts
+|   |   |       advisor.model.ts
+|   |   |       cannon.model.spec.ts
+|   |   |       cannon.model.ts
+|   |   |       chariot.model.spec.ts
+|   |   |       chariot.model.ts
+|   |   |       elephant.model.spec.ts
+|   |   |       elephant.model.ts
+|   |   |       general.model.spec.ts
+|   |   |       general.model.ts
+|   |   |       horse.model.spec.ts
+|   |   |       horse.model.ts
+|   |   |       piece.model.spec.ts
+|   |   |       piece.model.ts
+|   |   |       soldier.model.spec.ts
+|   |   |       soldier.model.ts
+|   |   |       
+|   |   \---services
+|   |           board-evaluator.service.spec.ts
+|   |           board-evaluator.service.ts
+|   |           game-logic.service.spec.ts
+|   |           game-logic.service.ts
+|   |           minimax.service.spec.ts
+|   |           minimax.service.ts
+|   |           move-generator.service.spec.ts
+|   |           move-generator.service.ts
+|   |           xiangqi-ai.service.spec.ts
+|   |           xiangqi-ai.service.ts
+|   |           
+|   +---features
+|   |   \---game
+|   |       |   game.module.ts
+|   |       |   
+|   |       +---ai
+|   |       |       ai-player.service.spec.ts
+|   |       |       ai-player.service.ts
+|   |       |       bot-difficulty.ts
+|   |       |       bot.service.spec.ts
+|   |       |       bot.service.ts
+|   |       |       evaluator.service.spec.ts
+|   |       |       evaluator.service.ts
+|   |       |       
+|   |       \---components
+|   |           +---chess-piece
+|   |           |       chess-piece.component.html
+|   |           |       chess-piece.component.scss
+|   |           |       chess-piece.component.spec.ts
+|   |           |       chess-piece.component.ts
+|   |           |       
+|   |           +---game-board
+|   |           |       game-board.component.html
+|   |           |       game-board.component.scss
+|   |           |       game-board.component.spec.ts
+|   |           |       game-board.component.ts
+|   |           |       
+|   |           \---move-history
+|   |                   move-history.component.html
+|   |                   move-history.component.scss
+|   |                   move-history.component.spec.ts
+|   |                   move-history.component.ts
+|   |                   
+|   +---pages
+|   |   |   pages.module.ts
+|   |   |   
+|   |   +---game-mode
+|   |   |       game-mode.component.html
+|   |   |       game-mode.component.scss
+|   |   |       game-mode.component.spec.ts
+|   |   |       game-mode.component.ts
+|   |   |       
+|   |   +---main-game
+|   |   |       main-game.component.html
+|   |   |       main-game.component.scss
+|   |   |       main-game.component.spec.ts
+|   |   |       main-game.component.ts
+|   |   |       
+|   |   \---menus
+|   |       +---bot-menu
+|   |       |       bot-menu.component.html
+|   |       |       bot-menu.component.scss
+|   |       |       bot-menu.component.spec.ts
+|   |       |       bot-menu.component.ts
+|   |       |       
+|   |       +---difficulty-select-menu
+|   |       |       difficulty-select-menu.component.html
+|   |       |       difficulty-select-menu.component.scss
+|   |       |       difficulty-select-menu.component.spec.ts
+|   |       |       difficulty-select-menu.component.ts
+|   |       |       
+|   |       +---game-over-menu
+|   |       |       game-over-menu.component.html
+|   |       |       game-over-menu.component.scss
+|   |       |       game-over-menu.component.spec.ts
+|   |       |       game-over-menu.component.ts
+|   |       |       
+|   |       +---mode-select-menu
+|   |       |       mode-select-menu.component.html
+|   |       |       mode-select-menu.component.scss
+|   |       |       mode-select-menu.component.spec.ts
+|   |       |       mode-select-menu.component.ts
+|   |       |       
+|   |       +---pause-menu
+|   |       |       pause-menu.component.html
+|   |       |       pause-menu.component.scss
+|   |       |       pause-menu.component.spec.ts
+|   |       |       pause-menu.component.ts
+|   |       |       
+|   |       \---play-exit-menu
+|   |               play-exit-menu.component.html
+|   |               play-exit-menu.component.scss
+|   |               play-exit-menu.component.spec.ts
+|   |               play-exit-menu.component.ts
+|   |               
+|   \---shared
+|       |   shared.module.ts
+|       |   
+|       +---components
+|       |   +---popup
+|       |   |       popup.component.html
+|       |   |       popup.component.scss
+|       |   |       popup.component.spec.ts
+|       |   |       popup.component.ts
+|       |   |       
+|       |   \---promotion-menu
+|       |           promotion-menu.component.html
+|       |           promotion-menu.component.scss
+|       |           promotion-menu.component.spec.ts
+|       |           promotion-menu.component.ts
+|       |           
+|       +---directives
+|       |       drag-drop.directive.spec.ts
+|       |       drag-drop.directive.ts
+|       |       highlight-move.directive.spec.ts
+|       |       highlight-move.directive.ts
+|       |       
+|       \---utils
+|               chess-cursors.util.spec.ts
+|               chess-cursors.util.ts
+|               images.util.spec.ts
+|               images.util.ts
+|               move-formatter.util.spec.ts
+|               move-formatter.util.ts
+|               
++---assets
+|   +---images
+|   |   +---cursors
+|   |   \---pieces
+|   \---sounds
+\---styles
+        _chess-board.scss
+        _mixins.scss
+        _pieces.scss
+        _popup.scss
+        _variables.scss
+        
