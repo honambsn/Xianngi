@@ -1,0 +1,12 @@
+.board-grid {
+  display: grid;
+  grid-template-rows: repeat(10, 60px); // 10 hàng
+  grid-template-columns: repeat(9, 60px); // 9 cột
+  border: 2px solid #333;
+  background-color: #f9f6f0;
+}
+
+.cell-inner {
+  border: 1px solid #aaa;
+  position: relative;
+}

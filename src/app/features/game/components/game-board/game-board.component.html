@@ -1,1 +1,16 @@
-<p>game-board works!</p>
+<div class="board-grid">
+  <div
+    class="cell"
+    *ngFor="let row of rows; let rowIndex = index"
+    [attr.data-row]="row"
+  >
+    <div
+      class="cell-inner"
+      *ngFor="let col of cols; let colIndex = index"
+      [attr.data-col]="col"
+    >
+      <app-chess-piece
+        *ngIf="getPieceAt(rowIndex, colIndex) as piece" [piece]="piece"></app-chess-piece>
+    </div>
+  </div>
+</div>
