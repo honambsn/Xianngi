@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Board } from './core/models/board.model';
 import { testBoardInit } from './core/models/test-board';
+import { GameBoardComponent } from './features/game/components/game-board/game-board.component';
 //import { GameBoardComponent } from './features/game/components/game-board/game-board.component';
 
 @Component({
@@ -9,9 +10,10 @@ import { testBoardInit } from './core/models/test-board';
   standalone: true,
   //templateUrl: './app.component.html',
   //template: `<h1>Test Board Init - Check Console</h1>`,
-  templateUrl: './app.component.html',
+  //templateUrl: './app.component.html',
+  template: `<app-game-board></app-game-board>`,
   styleUrl: './app.component.scss',
-  imports: []
+  imports: [GameBoardComponent],
 })
 export class AppComponent implements OnInit {
   title = 'Xiangqii';

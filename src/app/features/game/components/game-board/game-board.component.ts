@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Board } from '../../../../core/models/board.model';
 import { Piece } from '../../../../core/models/piece.model';
 import { ChessPieceComponent } from './../chess-piece/chess-piece.component';
-
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -10,13 +10,16 @@ import { ChessPieceComponent } from './../chess-piece/chess-piece.component';
   standalone: true,
   templateUrl: './game-board.component.html',
   styleUrl: './game-board.component.scss',
-  imports: [ChessPieceComponent],
+  imports: [
+    CommonModule,
+    ChessPieceComponent
+  ],
 })
 export class GameBoardComponent implements OnInit {
   board = new Board();
   
   rows = Array.from({length: 10}, (_, i) => i);
-  columns = Array.from({length: 9}, (_, i) => i);
+  cols = Array.from({length: 9}, (_, i) => i);
 
   getPieceAt(row: number, col: number): Piece | null {
     return this.board.pieces.find(p => p.position.row === row && p.position.col === col) || null;

@@ -11,12 +11,9 @@ import { Piece } from '../../../../core/models/piece.model';
 export class ChessPieceComponent {
   @Input() piece!: Piece;
 
-  get pieceString(): string {
-const type = this.piece.type.toString().toLowerCase();  // ensure string
-  const player = this.piece.player.toString().toLowerCase();
-  
-    //return this.piece ? `${this.piece.type}${this.piece.color}` : '';
-    return `assets/images/pieces/${type}-${player}.png`;
-
+  get pieceImage(): string {
+    const type = this.piece.type.toString().toLowerCase();
+    const player = this.piece.player.toString().toLowerCase();
+    return `src/assets/images/pieces/${type}-${player}.png`;
   }
 }

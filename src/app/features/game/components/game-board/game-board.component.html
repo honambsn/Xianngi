@@ -1,4 +1,4 @@
-<div class="board-grid">
+<!-- <div class="board-grid">
   <div
     class="cell"
     *ngFor="let row of rows; let rowIndex = index"
@@ -10,7 +10,20 @@
       [attr.data-col]="col"
     >
       <app-chess-piece
-        *ngIf="getPieceAt(rowIndex, colIndex) as piece" [piece]="piece"></app-chess-piece>
+        *ngIf="getPieceAt(rowIndex, colIndex) as piece"
+        [piece]="piece"
+      ></app-chess-piece>
+    </div>
+  </div>
+</div> -->
+<div class="board-grid">
+  <div class="cell" *ngFor="let row of rows; let rowIndex = index">
+    <div class="cell-inner" *ngFor="let col of cols; let colIndex = index">
+      <span class="debug">{{ rowIndex }},{{ colIndex }}</span>
+      <app-chess-piece
+        *ngIf="getPieceAt(rowIndex, colIndex) as piece"
+        [piece]="piece"
+      ></app-chess-piece>
     </div>
   </div>
 </div>

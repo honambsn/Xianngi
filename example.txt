@@ -18,8 +18,18 @@ https://fonts.google.com/specimen/Zhi+Mang+Xing
 https://www.akuziti.com/mb/
 
 
-將 帥 仕
-士 象 相 馬
+帥 將
+仕 士 
+相 象
 
-傌 马 車 俥
-砲 炮 卒 兵
+傌 馬 /马 
+俥(not yet) 車
+
+炮 砲
+兵 卒
+
+
+30 120 100
+FFAAAA
+
+shadow effect 10x20
