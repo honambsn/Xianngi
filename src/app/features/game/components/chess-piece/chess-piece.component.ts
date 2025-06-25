@@ -14,6 +14,6 @@ export class ChessPieceComponent {
   get pieceImage(): string {
     const type = this.piece.type.toString().toLowerCase();
     const player = this.piece.player.toString().toLowerCase();
-    return `src/assets/images/pieces/${type}-${player}.png`;
+    return `assets/images/pieces/${type}-${player}.png`;
   }
 }

@@ -16,9 +16,9 @@
     </div>
   </div>
 </div> -->
-<div class="board-grid">
+<!-- <div class="board-grid">
   <div class="cell" *ngFor="let row of rows; let rowIndex = index">
-    <div class="cell-inner" *ngFor="let col of cols; let colIndex = index">
+    <div class="cell-inner" *ngFor="let col of columns; let colIndex = index">
       <span class="debug">{{ rowIndex }},{{ colIndex }}</span>
       <app-chess-piece
         *ngIf="getPieceAt(rowIndex, colIndex) as piece"
@@ -26,4 +26,29 @@
       ></app-chess-piece>
     </div>
   </div>
-</div>
+</div> -->
+
+
+<svg
+  width="540"
+  height="600"
+  viewBox="0 0 540 600"
+  xmlns="http://www.w3.org/2000/svg"
+  class="xiangqi-board"
+>
+  <!-- Toàn bộ nội dung của board_dark.svg dán tại đây -->
+   <image  href="assets/images/board_dark.svg" width="540" height="600"/>
+
+  <!-- Thêm group để vẽ quân -->
+  <g class="pieces-layer">
+    <ng-container *ngFor="let piece of board.pieces">
+      <image
+        [attr.x]="getX(piece.position.col)"
+        [attr.y]="getY(piece.position.row)"
+        [attr.width]="cellSize"
+        [attr.height]="cellSize"
+        [attr.href]="pieceImage(piece)"
+      />
+    </ng-container>
+  </g>
+</svg>

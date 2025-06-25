@@ -1,12 +1,14 @@
-.board-grid {
-  display: grid;
-  grid-template-rows: repeat(10, 60px); // 10 hàng
-  grid-template-columns: repeat(9, 60px); // 9 cột
-  border: 2px solid #333;
-  background-color: #f9f6f0;
+.xiangqi-board {
+  display: block;
+  margin: 0 auto;
+  background-color: #f8f5f0; // fallback nếu SVG không load
 }
 
-.cell-inner {
-  border: 1px solid #aaa;
-  position: relative;
+.pieces-layer image {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.pieces-layer image:hover {
+  transform: scale(1.1);
 }

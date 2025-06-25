@@ -17,19 +17,27 @@ import { CommonModule } from '@angular/common';
 })
 export class GameBoardComponent implements OnInit {
   board = new Board();
+  cellSize = 60;
   
-  rows = Array.from({length: 10}, (_, i) => i);
-  cols = Array.from({length: 9}, (_, i) => i);
-
-  getPieceAt(row: number, col: number): Piece | null {
-    return this.board.pieces.find(p => p.position.row === row && p.position.col === col) || null;
-  }
-
-  ngOnInit(): void {
+    ngOnInit(): void {
     // Initialize the game board with pieces
     //this.board.initPieces();
     
     // Log the pieces to the console for debugging
     console.log('Game Board Pieces:', this.board.pieces);
+  }
+
+  getX(col: number): number {
+    return col * this.cellSize - this.cellSize / 2;
+  }
+
+  getY(row: number): number {
+    return row * this.cellSize - this.cellSize / 2;
+  }
+
+  pieceImage(piece: Piece): string {
+    const type = piece.type.toString().toLowerCase();
+    const player = piece.player.toString().toLowerCase();
+    return `assets/images/pieces/${type}-${player}.png`;
   }
 }
