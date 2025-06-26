@@ -19,6 +19,8 @@ export class AppComponent implements OnInit {
   title = 'Xiangqii';
   ngOnInit() : void{
     // Initialize the game board and log the pieces to the console
+    console.debug("AppComponent initialized");
+    console.debug("Initializing Test Board...");
     testBoardInit();
   }
 }

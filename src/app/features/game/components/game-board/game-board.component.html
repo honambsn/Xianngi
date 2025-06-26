@@ -30,8 +30,8 @@
 
 
 <svg
-  width="540"
-  height="600"
+  [attr.width]="cellSize * 9"
+  [attr.height]="cellSize * 10"
   viewBox="0 0 540 600"
   xmlns="http://www.w3.org/2000/svg"
   class="xiangqi-board"
@@ -39,16 +39,22 @@
   <!-- Toàn bộ nội dung của board_dark.svg dán tại đây -->
    <image  href="assets/images/board_dark.svg" width="540" height="600"/>
 
-  <!-- Thêm group để vẽ quân -->
+  
   <g class="pieces-layer">
     <ng-container *ngFor="let piece of board.pieces">
-      <image
-        [attr.x]="getX(piece.position.col)"
-        [attr.y]="getY(piece.position.row)"
-        [attr.width]="cellSize"
-        [attr.height]="cellSize"
-        [attr.href]="pieceImage(piece)"
-      />
+      <g
+        class="piece-wrapper"
+        [attr.transform]="transform(piece)"
+        (mouseenter)="hoveredPiece = piece"
+        (mouseleave)="hoveredPiece = null"
+      >
+        <image
+          [attr.width]="cellSize"
+          [attr.height]="cellSize"
+          [attr.href]="pieceImage(piece)"
+        />
+      </g>
     </ng-container>
   </g>
+
 </svg>

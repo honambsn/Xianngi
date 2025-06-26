@@ -1,14 +1,25 @@
 .xiangqi-board {
   display: block;
-  margin: 0 auto;
-  background-color: #f8f5f0; // fallback nếu SVG không load
-}
+  max-width: 100%;
+  margin: auto;
+  image-rendering: crisp-edges;
 
-.pieces-layer image {
+  .pieces-layer .piece-wrapper {
+  transition: transform 0.2s ease-in-out;
+  pointer-events: auto;
   cursor: pointer;
-  transition: transform 0.2s ease;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+    }
+    &:active {
+      transform: scale(0.9);
+    }
+    &:hover {
+      //transform: scale(1.1);
+    }
+  }
 }
 
-.pieces-layer image:hover {
-  transform: scale(1.1);
-}

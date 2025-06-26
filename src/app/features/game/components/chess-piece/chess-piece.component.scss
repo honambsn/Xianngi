@@ -1,6 +1,18 @@
-.chess-piece {
+// .chess-piece {
+//   width: 100%;
+//   height: 100%;
+//   object-fit: contain;
+//   pointer-events: none;
+// }
+
+img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  pointer-events: none;
+  transition: transform 0.2s;
+  transform-origin: center center;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }

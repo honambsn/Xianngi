@@ -1,6 +1,7 @@
 import { Board } from "./board.model";
 
 export function testBoardInit(): void {
+    console.debug("Initializing Test Board...");
     const board = new Board();
     console.log("Initial Board Pieces:", board.pieces);
 
