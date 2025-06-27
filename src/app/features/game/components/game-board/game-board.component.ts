@@ -58,4 +58,11 @@ export class GameBoardComponent implements OnInit {
     const player = piece.player.toString().toLowerCase();
     return `assets/images/pieces/${type}-${player}.png`;
   }
+
+  getPieceAt(row: number, col: number): Piece | null {
+  return this.board.pieces.find(
+    p => !p.isCaptured && p.position.row === row && p.position.col === col
+  ) || null;
+}
+
 }

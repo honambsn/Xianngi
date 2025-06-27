@@ -10,6 +10,21 @@ export class Board {
         this.initializePieces();
     }
 
+    getPieceAt(pos: Position): Piece | null {
+        return this.pieces.find(
+            p => !p.isCaptured && p.position.row === pos.row && p.position.col === pos.col
+        ) || null;
+    }
+
+
+    movePiece(piece: Piece, to: Position): void {
+        const targetPiece = this.getPieceAt(to);
+        if (targetPiece && targetPiece.player !== piece.player) {
+            targetPiece.isCaptured = true; // Capture the piece
+        }
+        piece.position = to; // Move the piece to the new position
+    }
+
     private initializePieces(): void {
         const setup: {type: PieceType, positions: Position[], player: Player}[] = [
             // --- Chariot (Xe) ---
