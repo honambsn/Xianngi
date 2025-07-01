@@ -113,14 +113,82 @@ class MoveGeneratorService {
     }
     return [];
   }
+  
   private getChariotMoves(piece: Piece, board: Board): Position[] {
     // Implement logic for Chariot moves
-    return [];
+    //return [];
+    const moves : Position[] = [];
+    const directions = [
+      { row: -1, col: 0 }, // Up
+      { row: 1, col: 0 }, // Down
+      { row: 0, col: -1 }, // Left
+      { row: 0, col: 1 } // Right
+    ];
+
+    for (const d of directions) {
+      let r = piece.position.row;
+      let c = piece.position.col;
+
+      while (this.isInBounds(r, c)){
+        const pos = { row: r, col: c };
+        if (this.isEmpty(board, pos)) {
+          moves.push(pos);
+        }
+        else{
+          if (this.isEnemy(board, piece, pos)) {
+            moves.push(pos); // Capture the enemy piece
+          }
+          break; // Stop if we hit a piece
+        }
+        r += d.row;
+        c += d.col;
+      }
+    }
+
+    return moves;
   }
 
   private getCannonMoves(piece: Piece, board: Board): Position[] {
     // Implement logic for Cannon moves
-    return [];
+    //return [];
+    const moves: Position[] = [];
+    const directions = [
+      { row: -1, col: 0 }, // Up
+      { row: 1, col: 0 }, // Down
+      { row: 0, col: -1 }, // Left
+      { row: 0, col: 1 } // Right
+    ];
+
+    for (const d of directions) {
+      let r = piece.position.row + d.row;
+      let c = piece.position.col + d.col;
+      let jumped = false;
+
+      while (this.isInBounds(r, c)) {
+        const pos = { row: r, col: c };
+        const target = board.getPieceAt(pos);
+
+        if (!jumped){
+          if (!target){
+            moves.push(pos); // Empty square, can move
+          }
+          else{
+            jumped = true; // Jump over the piece
+          }
+        }
+        else{
+          if (target){
+            if (this.isEnemy(board, piece, pos)) {
+              moves.push(pos); // Capture the enemy piece
+            }
+            break; // Stop if we hit a piece after jumping
+          }
+        }
+        r += d.row;
+        c += d.col;}
+      }
+
+    return moves;
   }
 
   private getElephantMoves(piece: Piece, board: Board): Position[] {
@@ -152,13 +220,68 @@ class MoveGeneratorService {
     return moves;
     //return [];
   }
+
   private getHorseMoves(piece: Piece, board: Board): Position[] {
     // Implement logic for Horse moves
-    return [];
+    //return [];
+    const moves: Position[] = [];
+    const steps =[
+      { row: -2, col: -1 }, // Up-Left
+      { row: -2, col: 1 }, // Up-Right
+      { row: 2, col: -1 }, // Down-Left
+      { row: 2, col: 1 }, // Down-Right
+      { row: -1, col: -2 }, // Left-Up
+      { row: -1, col: 2 }, // Right-Up
+      { row: 1, col: -2 }, // Left-Down
+      { row: 1, col: 2 } // Right-Down
+    ];
+
+    for (const s of steps) {
+      const leg = {
+        row: piece.position.row + (s.row === -2 || s.row === 2 ? s.row / 2 : 0),
+        col: piece.position.col + (s.col === -2 || s.col === 2 ? s.col / 2 : 0)
+      };
+
+      const r = piece.position.row + s.row;
+      const c = piece.position.col + s.col;
+      const pos = { row: r, col: c };
+      if (this.isInBounds(r, c) && this.isEmpty(board, leg) &&
+          (this.isEmpty(board, pos) || this.isEnemy(board, piece, pos))) {
+        moves.push(pos);
+      }
+    }
+    
+    return moves;
   }
+
   private getSoldierMoves(piece: Piece, board: Board): Position[] {
     // Implement logic for Soldier moves
-    return [];
+    //return [];
+    const moves : Position[] = [];
+    const forward = piece.player === Player.Red ? -1 : 1; // Red moves up, Black moves down
+    const r = piece.position.row + forward;
+    const c = piece.position.col;
+
+    if (this.isInBounds(r, c)) {
+      const pos = { row: r, col: c };
+      if (this.isEmpty(board, pos) || this.isEnemy(board, piece, pos)) {
+        moves.push(pos);
+      }
+    }
+
+    const crossedRiver = piece.player === Player.Red ? piece.position.row <= 4 : piece.position.row >= 5;
+    if (crossedRiver){
+      for (const dc of [-1, 1]) { // Left and Right moves
+        const nc = piece.position.col + dc;
+        const pos = { row: piece.position.row, col: nc };
+        if (this.isInBounds(pos.row, pos.col) && 
+          (this.isEmpty(board, pos) || this.isEnemy(board, piece, pos))) {
+          moves.push(pos);
+        }
+      }
+    }
+
+    return moves;
   }
 
 }
