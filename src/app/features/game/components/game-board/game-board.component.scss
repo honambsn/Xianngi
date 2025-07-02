@@ -14,12 +14,17 @@
       object-fit: contain;
       pointer-events: none;
     }
-    &:active {
-      transform: scale(0.9);
-    }
+    // &:active {
+    //   transform: scale(0.9);
+    // }
     &:hover {
       //transform: scale(1.1);
     }
   }
+
+  .valid-move-layer circle {
+  transition: fill 0.2s ease;
+}
+
 }
 

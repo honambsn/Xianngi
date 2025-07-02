@@ -35,18 +35,46 @@
   viewBox="0 0 540 600"
   xmlns="http://www.w3.org/2000/svg"
   class="xiangqi-board"
+  (click)="clearSelection()"
 >
   <!-- Toàn bộ nội dung của board_dark.svg dán tại đây -->
    <image  href="assets/images/board_dark.svg" width="540" height="600"/>
 
+  <!-- layer show valid moves -->
+  <g class="valid-move-layer">
+    <!-- <ng-container *ngFor="let piece of board.pieces">
+      <g
+        class="piece-wrapper"
+        [attr.transform]="transform(piece)"
+        (mouseenter)="hoveredPiece = piece"
+        (mouseleave)="hoveredPiece = null"
+      >
+        <image
+          [attr.width]="cellSize"
+          [attr.height]="cellSize"
+          [attr.href]="pieceImage(piece)"
+        />
+      </g>
+    </ng-container> -->
+    <circle
+      *ngFor="let move of validMoves"
+      [attr.cx]="getX(move.col) * cellSize + cellSize / 2"
+      [attr.cy]="getY(move.row) * cellSize + cellSize / 2"
+      [attr.r]="cellSize / 6"
+      fill = "green"
+      opacity="0.5"
+      />
+  </g>
   
-  <g class="pieces-layer">
+  <!-- layer show pieces -->
+  <g class="pieces-player">
     <ng-container *ngFor="let piece of board.pieces">
       <g
         class="piece-wrapper"
         [attr.transform]="transform(piece)"
         (mouseenter)="hoveredPiece = piece"
         (mouseleave)="hoveredPiece = null"
+        (click)="onCellClick(piece.position.row, piece.position.col); $event.stopPropagation()"
       >
         <image
           [attr.width]="cellSize"

@@ -3,6 +3,9 @@ import { Board } from '../../../../core/models/board.model';
 import { Piece } from '../../../../core/models/piece.model';
 import { ChessPieceComponent } from './../chess-piece/chess-piece.component';
 import { CommonModule } from '@angular/common';
+import { Position } from '../../../../core/models/position.model';
+import { Player } from '../../../../core/models/player.enum';
+import { GameLogicService } from '../../../../core/services/game-logic.service';
 
 
 @Component({
@@ -21,6 +24,13 @@ export class GameBoardComponent implements OnInit {
   offsetX = 15;
   offsetY = 15;
   hoveredPiece: Piece | null = null;
+
+  selectedPiece: Piece | null = null;
+  validMoves: Position[] = [];
+
+  currentPlayer : Player = Player.Red; // Default to Red player
+
+  constructor(private gameLogic: GameLogicService) {}
 
   transform(piece: Piece): string {
     // Calculate the position of the piece based on its row and column
@@ -60,9 +70,63 @@ export class GameBoardComponent implements OnInit {
   }
 
   getPieceAt(row: number, col: number): Piece | null {
-  return this.board.pieces.find(
-    p => !p.isCaptured && p.position.row === row && p.position.col === col
-  ) || null;
-}
+    return this.board.pieces.find(
+      p => !p.isCaptured && p.position.row === row && p.position.col === col
+    ) || null;
+  }
 
+  onCellClick(row: number, col: number): void {
+    const pos = {row, col};
+    const targetPiece = this.getPieceAt(row, col);
+
+    // if (this.selectedPiece){
+    //   if (this.gameLogic.isMoveValid(this.selectedPiece, pos, this.board)) {
+    //     try {
+    //       this.gameLogic.movePiece(this.selectedPiece, pos, this.board);
+    //       this.currentPlayer = this.currentPlayer === Player.Red ? Player.Black : Player.Red; // Switch player
+    //     } catch (error) {
+    //       console.error('Invalid move:', error);
+    //     }
+    //   }
+    //   this.clearSelection();
+    // }
+    // else if (targetPiece && targetPiece.player === this.currentPlayer) {
+    //   // Select the piece if it belongs to the current player
+    //   this.selectedPiece = targetPiece;
+    //   this.validMoves = this.gameLogic.getValidMoves(targetPiece, this.board);
+    // } else {
+    //   // Deselect the piece if clicked on an empty cell or opponent's piece
+    //   this.clearSelection();
+    // }
+
+    if (this.selectedPiece){
+      if (this.isValidMove(row, col)){
+      this.gameLogic.movePiece(this.selectedPiece, pos, this.board);
+        this.switchTurn(); // Switch player after a valid move
+      }
+      this.clearSelection();
+    }
+    else if (targetPiece && targetPiece.player === this.currentPlayer) {
+      // Select the piece if it belongs to the current player
+      this.selectedPiece = targetPiece;
+      this.validMoves = this.gameLogic.getValidMoves(targetPiece, this.board);
+    } else {
+      // Deselect the piece if clicked on an empty cell or opponent's piece
+      this.clearSelection();
+    }
+  }
+
+  isValidMove(row: number, col: number): boolean {
+    return this.validMoves.some(pos => pos.row === row && pos.col === col);
+  }
+
+  clearSelection(): void {
+    this.selectedPiece = null;
+    this.validMoves = [];
+    this.hoveredPiece = null; // Clear hovered piece when selection is cleared
+  }
+
+  switchTurn(): void {
+    this.currentPlayer = this.currentPlayer === Player.Red ? Player.Black : Player.Red;
+  }
 }

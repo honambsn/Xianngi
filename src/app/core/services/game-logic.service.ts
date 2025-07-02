@@ -34,6 +34,11 @@ export class GameLogicService {
       .map(p => ({ piece: p, moves: generator.getValidMoves(p, board) }))
       .filter(p => p.moves.length > 0);
   }
+
+  getValidMoves(piece: Piece, board: Board): Position[] {
+    const generator = new MoveGeneratorService();
+    return generator.getValidMoves(piece, board);
+  }
 }
 
 class MoveGeneratorService {
