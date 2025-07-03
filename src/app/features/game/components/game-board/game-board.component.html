@@ -58,8 +58,8 @@
     </ng-container> -->
     <circle
       *ngFor="let move of validMoves"
-      [attr.cx]="getX(move.col) * cellSize + cellSize / 2"
-      [attr.cy]="getY(move.row) * cellSize + cellSize / 2"
+      [attr.cx]="getX(move.col) + cellSize / 2"
+      [attr.cy]="getY(move.row) + cellSize / 2"
       [attr.r]="cellSize / 6"
       fill = "green"
       opacity="0.5"
@@ -74,13 +74,21 @@
         [attr.transform]="transform(piece)"
         (mouseenter)="hoveredPiece = piece"
         (mouseleave)="hoveredPiece = null"
-        (click)="onCellClick(piece.position.row, piece.position.col); $event.stopPropagation()"
-      >
+        (click)="onCellClick(piece.position.row, piece.position.col); $event.stopPropagation()">
         <image
           [attr.width]="cellSize"
           [attr.height]="cellSize"
-          [attr.href]="pieceImage(piece)"
-        />
+          [attr.href]="pieceImage(piece)"/>
+
+        <!-- Highlight the selected piece -->
+        <circle
+          *ngIf="selectedPiece"
+          [attr.cx]="getX(selectedPiece.position.col) + cellSize / 2"
+          [attr.cy]="getY(selectedPiece.position.row) + cellSize / 2"
+          [attr.r]="cellSize / 2"
+          stroke = "orange"
+          stroke-width="2"
+          fill = "transparent"/>
       </g>
     </ng-container>
   </g>
