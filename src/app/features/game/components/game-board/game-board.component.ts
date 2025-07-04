@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { Position } from '../../../../core/models/position.model';
 import { Player } from '../../../../core/models/player.enum';
 import { GameLogicService } from '../../../../core/services/game-logic.service';
-
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-game-board',
@@ -30,7 +30,10 @@ export class GameBoardComponent implements OnInit {
 
   currentPlayer : Player = Player.Red; // Default to Red player
 
-  constructor(private gameLogic: GameLogicService) {}
+  constructor(
+    private gameLogic: GameLogicService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   transform(piece: Piece): string {
     // Calculate the position of the piece based on its row and column
@@ -101,8 +104,9 @@ export class GameBoardComponent implements OnInit {
 
     if (this.selectedPiece){
       if (this.isValidMove(row, col)){
-      this.gameLogic.movePiece(this.selectedPiece, pos, this.board);
+        this.gameLogic.movePiece(this.selectedPiece, pos, this.board);
         this.switchTurn(); // Switch player after a valid move
+        //this.cdr.detectChanges(); // Ensure the view updates
       }
       this.clearSelection();
     }
